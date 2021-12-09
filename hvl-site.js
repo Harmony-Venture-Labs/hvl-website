@@ -16,11 +16,11 @@ const addJob = (title, location, url, company) => {
       <div class="item-title" style="font-weight: 600;">
         ${title}
       </div>
-      <div style="text-decoration: none !important; display: inline-block;">
+      <div style="text-decoration: none !important; display: inline-block; style="font-weight: normal;">
         ${location}
       </div>
     </div>
-    <div style="text-decoration: none !important; display: inline-block;">
+    <div style="text-decoration: none !important; display: inline-block; style="font-weight: normal;">
       ${company}
     </div>
   </a>`
@@ -44,6 +44,11 @@ const getJobs = async () => {
   style.innerHTML = `
     .list-item:hover .item-title {
       text-decoration: underline;
+    }
+
+    .list-item {
+      display: flex;
+      justify-content: space-between;
     }
   `;
   document.head.appendChild(style)
