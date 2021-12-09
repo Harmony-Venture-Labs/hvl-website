@@ -11,7 +11,7 @@ const addJob = (title, location, url, company) => {
   job.style = `
     cursor: pointer;
   `
-  job.innerHTML = `<a style="display: flex; justify-content: space-between;">
+  job.innerHTML = `<a style="display: flex; justify-content: space-between; color: #292d2e !important;">
     <div style="display: grid;">
       <div class="item-title" style="font-weight: 600;">
         ${title}
@@ -40,6 +40,12 @@ const getJobs = async () => {
   jobs.trustspot.jobs.map(job => {
     addJob(job.title, job.location.name, job.absolute_url, 'TrustSpot');
   });
+  const style = document.createElement('style');
+  style.innerHTML = `
+    .list-item:hover .item-title {
+      text-decoration: underline;
+    }
+  `;
   document.head.appendChild(style)
   console.log(jobs)
 }
