@@ -11,7 +11,7 @@ const addJob = (title, location, url, company) => {
   job.style = `
     cursor: pointer;
   `
-  job.innerHTML = `<a class="list-item" style="display: flex; justify-content: space-between; color: #292d2e !important;">
+  job.innerHTML = `<a class="list-item"">
     <div style="display: grid;">
       <div class="item-title" style="font-weight: 600;">
         ${title}
@@ -42,6 +42,13 @@ const getJobs = async () => {
   });
   const style = document.createElement('style');
   style.innerHTML = `
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      color: #292d2e !important;
+      text-decoration: unset;
+    }
+
     .list-item:hover .item-title {
       text-decoration: underline;
     }
