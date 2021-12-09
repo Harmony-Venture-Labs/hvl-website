@@ -31,21 +31,15 @@ const getJobs = async () => {
   jobs.copysmith = await fetch("https://boards-api.greenhouse.io/v1/boards/copysmith/jobs?content=true").then(re => re.json())
   jobs.hvl = await fetch("https://boards-api.greenhouse.io/v1/boards/harmonyventurelabs/jobs?content=true").then(re => re.json())
   jobs.trustspot = await fetch("https://boards-api.greenhouse.io/v1/boards/trustspot/jobs?content=true").then(re => re.json())
-  jobs.copysmith.jobs.map(job => {
-    addJob(job.title, job.location.name, job.absolute_url, 'Copysmith');
-  });
   jobs.hvl.jobs.map(job => {
     addJob(job.title, job.location.name, job.absolute_url, 'Harmony Venture Labs');
+  });
+  jobs.copysmith.jobs.map(job => {
+    addJob(job.title, job.location.name, job.absolute_url, 'Copysmith');
   });
   jobs.trustspot.jobs.map(job => {
     addJob(job.title, job.location.name, job.absolute_url, 'TrustSpot');
   });
-  const style = document.createElement('style');
-  style.innerHTML = `
-    .list-item:hover .item-title {
-      text-decoration: underline;
-    }
-  `;
   document.head.appendChild(style)
   console.log(jobs)
 }
