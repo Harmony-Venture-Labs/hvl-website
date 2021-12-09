@@ -11,7 +11,7 @@ const addJob = (title, location, url, company) => {
   job.style = `
     cursor: pointer;
   `
-  job.innerHTML = `<a style="display: flex; justify-content: space-between; color: #292d2e !important;">
+  job.innerHTML = `<a class="list-item" style="display: flex; justify-content: space-between; color: #292d2e !important;">
     <div style="display: grid;">
       <div class="item-title" style="font-weight: 600;">
         ${title}
