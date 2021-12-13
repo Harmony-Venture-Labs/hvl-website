@@ -43,7 +43,7 @@ window.onload = () => {
   sel.onchange = (e) => {
     const url = (new URLSearchParams(window.location.search))
     url.set('c', (e.target.value));
-    window.location.href = `?${url}`
+    window.location.href = url === 'hvl' ? `?${url}` : ''
   }
   const list = document.getElementById("grnhse_app")
   list.appendChild(sel);
