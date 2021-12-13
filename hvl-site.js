@@ -41,7 +41,9 @@ window.onload = () => {
   `
   sel.value = (new URLSearchParams(window.location.search)).get("c") || 'hvl'
   sel.onchange = (e) => {
-    console.log(e.target.value)
+    const url = (new URLSearchParams(window.location.search))
+    url.set('c', (e.target.value));
+    window.location.href = `?${url}`
   }
   const list = document.getElementById("grnhse_app")
   list.appendChild(sel);
