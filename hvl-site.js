@@ -27,17 +27,52 @@ const addJob = (title, location, url, company) => {
   list.appendChild(job);
 }
 
+{/* <div id="grnhse_app" style="row-gap: 20px; display: grid; width: 100%; max-width: 800px;"></div>
+<script src="https://harmony-venture-labs.github.io/hvl-website/hvl-site.js"></script> */}
+window.onload = () => {
+  const sel = document.createElement("select");
+  sel.innerHTML = `
+    <option>hvl</option>
+    <option>trustspot</option>
+    <option>copysmith</option>
+  `;
+  sel.style = `
+    width: 200px;
+  `
+  sel.value = (new URLSearchParams(window.location.search)).get("c") || 'hvl'
+  sel.onchange = (e) => {
+    console.log(e.target.value)
+  }
+  const list = document.getElementById("grnhse_app")
+  list.appendChild(sel);
+}
+
 const getJobs = async () => {
-  jobs.copysmith = await fetch("https://boards-api.greenhouse.io/v1/boards/copysmith/jobs?content=true").then(re => re.json())
-  jobs.hvl = await fetch("https://boards-api.greenhouse.io/v1/boards/harmonyventurelabs/jobs?content=true").then(re => re.json())
-  jobs.trustspot = await fetch("https://boards-api.greenhouse.io/v1/boards/trustspot/jobs?content=true").then(re => re.json())
-  jobs.hvl.jobs.map(job => {
+  const loc = (new URLSearchParams(window.location.search)).get("c")
+
+  switch (loc) {
+    case 'copysmith':
+      jobs.copysmith = await fetch("https://boards-api.greenhouse.io/v1/boards/copysmith/jobs?content=true").then(re => re.json());
+      break;
+    case 'hvl':
+      jobs.hvl = await fetch("https://boards-api.greenhouse.io/v1/boards/harmonyventurelabs/jobs?content=true").then(re => re.json());
+      break;
+    case 'trustspot':
+      jobs.trustspot = await fetch("https://boards-api.greenhouse.io/v1/boards/trustspot/jobs?content=true").then(re => re.json());
+      break;
+    default:
+      jobs.copysmith = await fetch("https://boards-api.greenhouse.io/v1/boards/copysmith/jobs?content=true").then(re => re.json());
+      jobs.hvl = await fetch("https://boards-api.greenhouse.io/v1/boards/harmonyventurelabs/jobs?content=true").then(re => re.json());
+      jobs.trustspot = await fetch("https://boards-api.greenhouse.io/v1/boards/trustspot/jobs?content=true").then(re => re.json());
+  }
+
+  jobs.hvl?.jobs?.map(job => {
     addJob(job.title, job.location.name, job.absolute_url, 'Harmony Venture Labs');
   });
-  jobs.copysmith.jobs.map(job => {
+  jobs.copysmith?.jobs?.map(job => {
     addJob(job.title, job.location.name, job.absolute_url, 'Copysmith');
   });
-  jobs.trustspot.jobs.map(job => {
+  jobs.trustspot?.jobs?.map(job => {
     addJob(job.title, job.location.name, job.absolute_url, 'TrustSpot');
   });
   const style = document.createElement('style');
@@ -54,7 +89,6 @@ const getJobs = async () => {
     }
   `;
   document.head.appendChild(style)
-  console.log(jobs)
 }
 
 getJobs()
