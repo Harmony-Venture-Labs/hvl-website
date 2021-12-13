@@ -32,6 +32,7 @@ const addJob = (title, location, url, company) => {
 window.onload = () => {
   const sel = document.createElement("select");
   sel.innerHTML = `
+    <option>all</option>
     <option>hvl</option>
     <option>trustspot</option>
     <option>copysmith</option>
@@ -43,7 +44,7 @@ window.onload = () => {
   sel.onchange = (e) => {
     const url = (new URLSearchParams(window.location.search))
     url.set('c', (e.target.value));
-    window.location.href = url === 'hvl' ? `?${url}` : ''
+    window.location.href = e.target.value !== 'all' ? `?${url}` : ''
   }
   const list = document.getElementById("grnhse_app")
   list.appendChild(sel);
