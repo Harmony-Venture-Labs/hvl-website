@@ -1,9 +1,14 @@
 // const fetch = require("node-fetch");
 const jobs = {}
 
+const container = document.getElementById("grnhse_app");
+const inner = document.createElement("div");
+
+inner.id = "grnhse_app_content";
+inner.style = "row-gap: 20px; display: grid; width: 100%; max-width: 800px;";
+
 const addJob = (title, location, url, company) => {
-  const job = document.createElement('div')
-  const list = document.getElementById("grnhse_app")
+  const job = document.createElement('div');
   job.onclick = () => {
     window.location.href = url
   }
@@ -24,7 +29,8 @@ const addJob = (title, location, url, company) => {
       ${company}
     </div>
   </a>`
-  list.appendChild(job);
+  inner.appendChild(job);
+
 }
 
 {/* <div id="grnhse_app" style="row-gap: 20px; display: grid; width: 100%; max-width: 800px;"></div>
@@ -39,19 +45,38 @@ window.onload = () => {
   `;
   sel.style = `
     width: 200px;
-  `
-  sel.value = (new URLSearchParams(window.location.search)).get("c") || 'all';
+  `;
+  const style = document.createElement('style');
+  style.innerHTML = `
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      color: #292d2e !important;
+      text-decoration: unset;
+    }
+
+    .list-item:hover .item-title {
+      text-decoration: underline;
+    }
+  `;
+  document.head.appendChild(style);
+  sel.value = (new URLSearchParams(window.location.search)).get("c");
   sel.onchange = (e) => {
     const url = (new URLSearchParams(window.location.search));
     url.set('c', (e.target.value));
-    window.location.href = `?${url}`;
+    window.history.pushState({}, '', `?${url}`);
+    getJobs();
   }
-  const list = document.getElementById("grnhse_app")
-  list.appendChild(sel);
+  container.appendChild(sel);
+  container.appendChild(inner);
 }
 
 const getJobs = async () => {
-  const loc = (new URLSearchParams(window.location.search)).get("c")
+  const loc = (new URLSearchParams(window.location.search)).get("c");
+  inner.innerHTML = "";
+  jobs.copysmith = [];
+  jobs.trustspot = [];
+  jobs.hvl = [];
 
   switch (loc) {
     case 'copysmith':
@@ -78,20 +103,7 @@ const getJobs = async () => {
   jobs.trustspot?.jobs?.map(job => {
     addJob(job.title, job.location.name, job.absolute_url, 'TrustSpot');
   });
-  const style = document.createElement('style');
-  style.innerHTML = `
-    .list-item {
-      display: flex;
-      justify-content: space-between;
-      color: #292d2e !important;
-      text-decoration: unset;
-    }
 
-    .list-item:hover .item-title {
-      text-decoration: underline;
-    }
-  `;
-  document.head.appendChild(style)
 }
 
 getJobs()
