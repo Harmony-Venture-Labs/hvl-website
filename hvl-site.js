@@ -40,7 +40,7 @@ window.onload = () => {
   sel.style = `
     width: 200px;
   `
-  sel.value = (new URLSearchParams(window.location.search)).get("c") || 'hvl'
+  sel.value = (new URLSearchParams(window.location.search)).get("c") || 'all'
   sel.onchange = (e) => {
     const url = (new URLSearchParams(window.location.search))
     url.set('c', (e.target.value));
