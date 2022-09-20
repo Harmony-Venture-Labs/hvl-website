@@ -42,9 +42,11 @@ window.onload = () => {
     <option>hvl</option>
     <option>trustspot</option>
     <option>copysmith</option>
+    <option>prelaunchhvl</option>
   `;
   sel.style = `
     width: 200px;
+    margin-bottom: 10px;
   `;
   const style = document.createElement('style');
   style.innerHTML = `
@@ -77,6 +79,7 @@ const getJobs = async () => {
   jobs.copysmith = [];
   jobs.trustspot = [];
   jobs.hvl = [];
+  jobs.prelaunchhvl = [];
 
   switch (loc) {
     case 'copysmith':
@@ -88,10 +91,14 @@ const getJobs = async () => {
     case 'trustspot':
       jobs.trustspot = await fetch("https://boards-api.greenhouse.io/v1/boards/trustspot/jobs?content=true").then(re => re.json());
       break;
+    case 'prelaunchhvl':
+      jobs.prelaunchhvl = await fetch("https://boards-api.greenhouse.io/v1/boards/prelaunchhvl/jobs?content=true").then(re => re.json());
+      break;
     default:
       jobs.copysmith = await fetch("https://boards-api.greenhouse.io/v1/boards/copysmith/jobs?content=true").then(re => re.json());
       jobs.hvl = await fetch("https://boards-api.greenhouse.io/v1/boards/harmonyventurelabs/jobs?content=true").then(re => re.json());
       jobs.trustspot = await fetch("https://boards-api.greenhouse.io/v1/boards/trustspot/jobs?content=true").then(re => re.json());
+      jobs.prelaunchhvl = await fetch("https://boards-api.greenhouse.io/v1/boards/prelaunchhvl/jobs?content=true").then(re => re.json());
   }
 
   jobs.hvl?.jobs?.map(job => {
@@ -102,6 +109,9 @@ const getJobs = async () => {
   });
   jobs.trustspot?.jobs?.map(job => {
     addJob(job.title, job.location.name, job.absolute_url, 'TrustSpot');
+  });
+  jobs.trustspot?.jobs?.map(job => {
+    addJob(job.title, job.location.name, job.absolute_url, 'Pre Launch HVL');
   });
 
 }
