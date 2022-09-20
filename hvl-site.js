@@ -110,7 +110,7 @@ const getJobs = async () => {
   jobs.trustspot?.jobs?.map(job => {
     addJob(job.title, job.location.name, job.absolute_url, 'TrustSpot');
   });
-  jobs.trustspot?.jobs?.map(job => {
+  jobs.prelaunchhvl?.jobs?.map(job => {
     addJob(job.title, job.location.name, job.absolute_url, 'Pre Launch HVL');
   });
 
