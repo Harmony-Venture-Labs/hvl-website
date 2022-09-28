@@ -17,15 +17,15 @@ const addJob = (title, location, url, company) => {
     cursor: pointer;
   `
   job.innerHTML = `<a class="list-item"">
-    <div style="display: grid;">
-      <div class="item-title" style="font-weight: 600;">
+    <div class="job-details-container">
+      <div class="item-title">
         ${title}
       </div>
-      <div style="text-decoration: none !important; display: inline-block; style="font-weight: normal;">
+      <div class="job-board-location-item">
         ${location}
       </div>
     </div>
-    <div style="text-decoration: none !important; display: inline-block; style="font-weight: normal;">
+    <div class="job-board-company-item">
       ${company}
     </div>
   </a>`
@@ -37,6 +37,7 @@ const addJob = (title, location, url, company) => {
 <script src="https://harmony-venture-labs.github.io/hvl-website/hvl-site.js"></script> */}
 window.onload = () => {
   const sel = document.createElement("select");
+  sel.className = "portfolio-companies-job-board-filter"
   sel.innerHTML = `
     <option>all</option>
     <option>hvl</option>
@@ -44,22 +45,11 @@ window.onload = () => {
     <option>copysmith</option>
     <option>prelaunchhvl</option>
   `;
-  sel.style = `
-    width: 200px;
-    margin-bottom: 10px;
-  `;
+
   const style = document.createElement('style');
   style.innerHTML = `
-    .list-item {
-      display: flex;
-      justify-content: space-between;
-      color: #292d2e !important;
-      text-decoration: unset;
-    }
-
-    .list-item:hover .item-title {
-      text-decoration: underline;
-    }
+    
+   
   `;
   document.head.appendChild(style);
   sel.value = (new URLSearchParams(window.location.search)).get("c");

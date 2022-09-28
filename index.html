@@ -9,10 +9,10 @@
 </head>
 
 <body>
-  <select onchange="console.log(this)">
+  <!-- <select onchange="console.log(this)">
     <option value="company">company</option>
     <option value="company2">company2</option>
-  </select>
+  </select> -->
   <div style="display: flex; width: 100%; justify-content: center;">
     <style>
       a {
@@ -25,11 +25,70 @@
         justify-content: space-between;
       }
 
+      .item-title {
+        font-weight: 600;
+      }
+
       .list-item:hover .item-title {
         text-decoration: underline;
       }
+
+      .list-item {
+      display: flex;
+      justify-content: space-between;
+      color: #292d2e !important;
+      text-decoration: unset;
+    }
+
+    .list-item:hover .item-title {
+      text-decoration: underline;
+    }
+
+    /* select dropdown styles */
+    .portfolio-companies-job-board-filter {
+        width: 50%;
+        margin-bottom: 40px;
+        padding: 10px;
+        display: block;
+        background: #eeeeee;
+        border: 1px solid #ccc;
+    }  
+    @media screen and (max-width: 480px) {
+      .portfolio-companies-job-board-filter {
+        width: 100%;
+      }
+    }  
+
+    /* job title styles for only DESKTOP*/
+    @media screen and (min-width: 480px) {
+      body {
+        font-size: 20px;
+        line-height: 34px;
+      }
+    }    
+    /* bottom border on list items */
+    
+    .list-item {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 20px;
+    }
+
+    .job-board-location-item {
+      display: inline-block; 
+      font-weight: normal;
+    }
+
+    .job-details-container {
+      display: grid;
+    }
+
+    .job-board-company-item {
+      display: inline-block; 
+      font-weight: normal;
+    }
     </style>
-    <div id="grnhse_app" style="row-gap: 20px; display: grid; width: 100%; max-width: 800px;">
+    <div id="grnhse_app" class="portfolio-companies-job-board"
+      style="row-gap: 20px; display: grid; width: 100%; max-width: 800px;">
 
     </div>
   </div>
