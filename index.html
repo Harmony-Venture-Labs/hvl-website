@@ -15,7 +15,7 @@
   </select> -->
   <div style="display: flex; width: 100%; justify-content: center;">
     <style>
-      a {
+      #grnhse_app > a {
         color: #292d2e !important;
         text-decoration: unset;
       }
@@ -34,58 +34,58 @@
       }
 
       .list-item {
-      display: flex;
-      justify-content: space-between;
-      color: #292d2e !important;
-      text-decoration: unset;
-    }
+        display: flex;
+        justify-content: space-between;
+        color: #292d2e !important;
+        text-decoration: unset;
+      }
 
-    .list-item:hover .item-title {
-      text-decoration: underline;
-    }
+      .list-item:hover .item-title {
+        text-decoration: underline;
+      }
 
-    /* select dropdown styles */
-    .portfolio-companies-job-board-filter {
-        width: 50%;
-        margin-bottom: 40px;
-        padding: 10px;
-        display: block;
-        background: #eeeeee;
-        border: 1px solid #ccc;
-    }  
-    @media screen and (max-width: 480px) {
+      /* select dropdown styles */
       .portfolio-companies-job-board-filter {
-        width: 100%;
+          width: 50%;
+          margin-bottom: 40px;
+          padding: 10px;
+          display: block;
+          background: #eeeeee;
+          border: 1px solid #ccc;
+      }  
+      @media screen and (max-width: 480px) {
+        .portfolio-companies-job-board-filter {
+          width: 100%;
+        }
+      }  
+
+      /* job title styles for only DESKTOP*/
+      @media screen and (min-width: 480px) {
+        body {
+          font-size: 20px;
+          line-height: 34px;
+        }
+      }    
+      /* bottom border on list items */
+      
+      .list-item {
+          border-bottom: 1px solid #ccc;
+          padding-bottom: 20px;
       }
-    }  
 
-    /* job title styles for only DESKTOP*/
-    @media screen and (min-width: 480px) {
-      body {
-        font-size: 20px;
-        line-height: 34px;
+      .job-board-location-item {
+        display: inline-block; 
+        font-weight: normal;
       }
-    }    
-    /* bottom border on list items */
-    
-    .list-item {
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 20px;
-    }
 
-    .job-board-location-item {
-      display: inline-block; 
-      font-weight: normal;
-    }
+      .job-details-container {
+        display: grid;
+      }
 
-    .job-details-container {
-      display: grid;
-    }
-
-    .job-board-company-item {
-      display: inline-block; 
-      font-weight: normal;
-    }
+      .job-board-company-item {
+        display: inline-block; 
+        font-weight: normal;
+      }
     </style>
     <div id="grnhse_app" class="portfolio-companies-job-board"
       style="row-gap: 20px; display: grid; width: 100%; max-width: 800px;">
